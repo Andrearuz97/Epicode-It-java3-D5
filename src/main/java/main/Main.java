@@ -11,21 +11,19 @@ import model.Libro;
 import model.Rivista;
 
 public class Main {
-	static Connection conn = null;
+	private static final String URL = "jdbc:postgresql://localhost:5432/libreria?useSSL=false";
+	private static final String USERNAME = "postgres";
+	private static final String PASSWORD = "Maiale97!";
 
 	public static void main(String[] args) {
-		String url = "jdbc:postgresql://localhost:5432/Libreria?useSSL=false";
-		String username = "postgres";
-		String password = "Maiale97!";
+		try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+			System.out.println("Connessione al database riuscita!");
 
-		try {
-			System.out.println("Connessione al database...");
-			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Connessione riuscita!");
-
-			// Aggiunge libro
-			Libro libro = new Libro("123456789", "Titolo del libro", 2023, 200, "Autore del libro", "Genere del libro");
 			LibroDAO libroDAO = new LibroDAO();
+			RivistaDAO rivistaDAO = new RivistaDAO();
+
+			// Aggiunge un libro
+			Libro libro = new Libro("123456789", "Titolo del libro", 2023, 200, "1", "Horror");
 			libroDAO.aggiungiLibro(libro);
 			System.out.println("Libro aggiunto con successo!");
 
@@ -34,28 +32,26 @@ public class Main {
 			libroDAO.updateLibro(libro);
 			System.out.println("Libro modificato con successo!");
 
-			// eliminazione di un libro
+			// Elimina un libro
 			String codiceISBN = "123456789";
 			libroDAO.deleteLibro(codiceISBN);
 			System.out.println("Libro eliminato con successo!");
 
-			// aggiunta di una rivista
+			// Aggiunge una rivista
 			Rivista rivista = new Rivista("987654321", "Titolo della rivista", 2023, 100, Periodicita.MENSILE);
-			RivistaDAO rivistaDAO = new RivistaDAO();
 			rivistaDAO.aggiungiRivista(rivista);
 			System.out.println("Rivista aggiunta con successo!");
 
-			// modifica di una rivista
+			// Modifica una rivista
 			rivista.setTitolo("Nuovo titolo della rivista");
 			rivistaDAO.updateRivista(rivista);
 			System.out.println("Rivista modificata con successo!");
 
-			// eliminazione di una rivista
+			// Elimina una rivista
 			String codiceISBNRivista = "987654321";
 			rivistaDAO.deleteRivista(codiceISBNRivista);
 			System.out.println("Rivista eliminata con successo!");
 
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
