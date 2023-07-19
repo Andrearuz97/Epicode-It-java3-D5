@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Prestito {
@@ -60,7 +61,13 @@ public class Prestito {
 	}
 
 	private Date calculateDataRestituzionePrevista(Date dataInizioPrestito) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dataInizioPrestito);
 
-		return null;
+		// Aggiungi 14 giorni per il periodo di prestito (puoi impostare il valore a tuo
+		// piacimento)
+		calendar.add(Calendar.DAY_OF_MONTH, 14);
+
+		return calendar.getTime();
 	}
 }

@@ -1,30 +1,45 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import enums.Periodicita;
 
 @Entity
 @Table(name = "riviste")
 public class Rivista {
 	@Id
-	private String codiceISBN;
-	private String titolo;
-	private int annoPubblicazione;
-	private int numeroPagine;
-	private Periodicita periodicità;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
+	@Column(name = "codiceISBN")
+	private String codiceISBN;
+
+	@Column(name = "titolo")
+	private String titolo;
+
+	@Column(name = "numero")
+	private int numero;
+
+	// Costruttori
 	public Rivista() {
 	}
 
-	public Rivista(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicità) {
+	public Rivista(String codiceISBN, String titolo, int numero) {
 		this.codiceISBN = codiceISBN;
 		this.titolo = titolo;
-		this.annoPubblicazione = annoPubblicazione;
-		this.numeroPagine = numeroPagine;
-		this.periodicità = periodicità;
+		this.numero = numero;
+	}
+
+	// Getter e Setter
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getCodiceISBN() {
@@ -43,33 +58,11 @@ public class Rivista {
 		this.titolo = titolo;
 	}
 
-	public int getAnnoPubblicazione() {
-		return annoPubblicazione;
+	public int getNumero() {
+		return numero;
 	}
 
-	public void setAnnoPubblicazione(int annoPubblicazione) {
-		this.annoPubblicazione = annoPubblicazione;
-	}
-
-	public int getNumeroPagine() {
-		return numeroPagine;
-	}
-
-	public void setNumeroPagine(int numeroPagine) {
-		this.numeroPagine = numeroPagine;
-	}
-
-	public Periodicita getPeriodicità() {
-		return periodicità;
-	}
-
-	public void setPeriodicità(Periodicita periodicità) {
-		this.periodicità = periodicità;
-	}
-
-	@Override
-	public String toString() {
-		return "Rivista{" + "codiceISBN='" + codiceISBN + '\'' + ", titolo='" + titolo + '\'' + ", annoPubblicazione="
-				+ annoPubblicazione + ", numeroPagine=" + numeroPagine + ", periodicità=" + periodicità + '}';
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 }

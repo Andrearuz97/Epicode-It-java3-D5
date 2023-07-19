@@ -1,6 +1,9 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,32 +11,31 @@ import javax.persistence.Table;
 @Table(name = "libri")
 public class Libro {
 	@Id
-	private String codiceISBN;
-	private String titolo;
-	private int annoPubblicazione;
-	private int numeroPagine;
-	private String autore;
-	private String genere;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
+	@Column(name = "titolo")
+	private String titolo;
+
+	@Column(name = "autore")
+	private String autore;
+
+	// Costruttori
 	public Libro() {
 	}
 
-	public Libro(String codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, String autore,
-			String genere) {
-		this.codiceISBN = codiceISBN;
+	public Libro(String titolo, String autore) {
 		this.titolo = titolo;
-		this.annoPubblicazione = annoPubblicazione;
-		this.numeroPagine = numeroPagine;
 		this.autore = autore;
-		this.genere = genere;
 	}
 
-	public String getCodiceISBN() {
-		return codiceISBN;
+	// Getter e Setter
+	public Long getId() {
+		return id;
 	}
 
-	public void setCodiceISBN(String codiceISBN) {
-		this.codiceISBN = codiceISBN;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTitolo() {
@@ -44,42 +46,11 @@ public class Libro {
 		this.titolo = titolo;
 	}
 
-	public int getAnnoPubblicazione() {
-		return annoPubblicazione;
-	}
-
-	public void setAnnoPubblicazione(int annoPubblicazione) {
-		this.annoPubblicazione = annoPubblicazione;
-	}
-
-	public int getNumeroPagine() {
-		return numeroPagine;
-	}
-
-	public void setNumeroPagine(int numeroPagine) {
-		this.numeroPagine = numeroPagine;
-	}
-
 	public String getAutore() {
 		return autore;
 	}
 
 	public void setAutore(String autore) {
 		this.autore = autore;
-	}
-
-	public String getGenere() {
-		return genere;
-	}
-
-	public void setGenere(String genere) {
-		this.genere = genere;
-	}
-
-	@Override
-	public String toString() {
-		return "Libro{" + "codiceISBN='" + codiceISBN + '\'' + ", titolo='" + titolo + '\'' + ", annoPubblicazione="
-				+ annoPubblicazione + ", numeroPagine=" + numeroPagine + ", autore='" + autore + '\'' + ", genere='"
-				+ genere + '\'' + '}';
 	}
 }
