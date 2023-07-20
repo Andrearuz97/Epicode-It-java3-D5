@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 
 	@Column(name = "titolo")
@@ -19,6 +20,9 @@ public class Libro {
 
 	@Column(name = "autore")
 	private String autore;
+
+	@Column(name = "genere")
+	private String genere;
 
 	// Costruttori
 	public Libro() {
@@ -52,5 +56,13 @@ public class Libro {
 
 	public void setAutore(String autore) {
 		this.autore = autore;
+	}
+
+	public String getGenere() {
+		return genere;
+	}
+
+	public void setGenere(String genere) {
+		this.genere = genere;
 	}
 }

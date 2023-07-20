@@ -6,6 +6,20 @@
     <groupId>Epicode-It-java3-D5</groupId>
     <artifactId>Libreria</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+<build>
+    <plugins>
+        <!-- Plugin di Maven per la gestione di JPA e Hibernate -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>1.8</source> <!-- Cambia la versione di Java in base alla tua configurazione -->
+                <target>1.8</target> <!-- Cambia la versione di Java in base alla tua configurazione -->
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 
     <dependencies>
         <!-- Dipendenze per PostgreSQL JDBC -->

@@ -23,14 +23,18 @@ public class Rivista {
 	@Column(name = "numero")
 	private int numero;
 
+	@Column(name = "periodicita")
+	private String periodicita;
+
 	// Costruttori
 	public Rivista() {
 	}
 
-	public Rivista(String codiceISBN, String titolo, int numero) {
+	public Rivista(String codiceISBN, String titolo, int numero, String periodicita) {
 		this.codiceISBN = codiceISBN;
 		this.titolo = titolo;
 		this.numero = numero;
+		this.periodicita = periodicita;
 	}
 
 	// Getter e Setter
@@ -64,5 +68,13 @@ public class Rivista {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	public String getPeriodicita() {
+		return periodicita;
+	}
+
+	public void setPeriodicita(String periodicita) {
+		this.periodicita = periodicita;
 	}
 }
