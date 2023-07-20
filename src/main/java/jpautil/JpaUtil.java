@@ -8,24 +8,24 @@ public class JpaUtil {
 	private static final EntityManagerFactory entityManagerFactory;
 
 	static {
-		
+
 		try {
-			
-			entityManagerFactory = Persistence.createEntityManagerFactory("progetto_settimana3");
-			
+
+			entityManagerFactory = Persistence.createEntityManagerFactory("Epicode-It-java3-D5");
+
 		} catch (Throwable ex) {
-			
+
 			System.err.println("Initial EntityManagerFactory creation failed." + ex);
 			throw new ExceptionInInitializerError(ex);
-			
+
 		}
-		
+
 	}
 
 	public static EntityManagerFactory getEntityManagerFactory() {
-		
+
 		return entityManagerFactory;
-		
+
 	}
-	
+
 }
